@@ -144,7 +144,7 @@ class rs2pc2():
             z = self.depth_1d[pt_2d[1], pt_2d[0]]
             pt_3d = rs.rs2_deproject_pixel_to_point(self.intr, pt_2d, z)
             ## mm to meters
-            ht[:3,3] = [i/1000.0 for i in pt_3d]
+            ht[:3,3] = [i*self.depth_scale for i in pt_3d]
             rot = np.array([[ 0, 0,  1, 0],
                             [-1, 0,  0, 0],
                             [ 0,-1,  0, 0],
@@ -163,7 +163,7 @@ class rs2pc2():
             for ix in range(self.width):
                 z = self.depth_1d[iy, ix]
                 pt_3d = rs.rs2_deproject_pixel_to_point(self.intr, [ix, iy], z)
-                self.depth_3d[iy,ix] = [i/1000.0 for i in pt_3d]
+                self.depth_3d[iy,ix] = [i*self.depth_scale for i in pt_3d]
 
     def depth_to_pc2(self):
         self.depth_1d_to_3d()
