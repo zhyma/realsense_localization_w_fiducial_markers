@@ -1,10 +1,16 @@
 <?xml version="1.0"?>
 <launch> 
-  <arg name="rs_serial_no" default=""/> 
+  <!-- Replace with your RealSense serial number here-->
+  <arg name="rs_serial_no" default="218622278069"/>
+  <!-- The offset from the tag to the world frame -->
+  <arg name="tag_offset" default="[[0.,0.,1.,0.005],[1.,0.,0.,0.],[0.,  1.,0.,0.07],[ 0.,0.,0.,1.]]">
+  <!-- Fiducial marker type -->  
   <arg name="marker_type"  default="DICT_4X4_50" />
   
   <node name="rs_loc_w_marker" pkg="realsense_localization_w_fiducial_markers" respawn="false" output="screen">
-    <param name="marker_type"          type="string" value="$(arg marker_type)" />
+    <param name="rs_serial_no" type="string" value="$(arg rs_serial_no)"/>
+    <param name="tag_offset" type="string" value="$(arg tag_offset)"/>
+    <param name="marker_type" type="string" value="$(arg marker_type)"/>
   </node>
 
 </launch>
