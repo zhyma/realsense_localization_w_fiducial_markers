@@ -86,7 +86,7 @@ class rs2pc2():
         st_profile = self.profile.get_stream(rs.stream.depth)
         self.intr = st_profile.as_video_stream_profile().get_intrinsics()
         self.k[0] = self.intr.fx
-        self.k[2] = self.intr.ppy
+        self.k[2] = self.intr.ppx
         self.k[4] = self.intr.fy
         self.k[5] = self.intr.ppy
         self.k[8] = 1.0
